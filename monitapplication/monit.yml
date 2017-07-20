@@ -1,0 +1,33 @@
+influxhost: http://localhost:8086
+influxlogin: root
+influxpassword: root
+dbname: telegraf2
+readlatencyseuil1: 60
+readlatencyseuil2: 80
+loadseuil1: 24
+loadseuil2: 30
+heapseuil1: 60
+heapseuil2: 80
+heaptotal: 6
+server:
+  type: simple
+  applicationContextPath: /
+  connector:
+    type: http
+    port: 9093
+  requestLog:
+      appenders:
+      - type: console
+        logFormat: "{\"vhost\":\"%v\",\"srv_port\": %localPort,\"r_bytes\":%b,\"q_bytes\":\"%header{Content-Length}\",\"r_content_type\":\"%responseHeader{Content-Type}\",\"r_server\":\"%responseHeader{Server}\",\"r_code\":\"%s\",\"q_agent\":\"%header{User-Agent}\",\"r_timing\":%D,\"client_ip\":\"%a\",\"q_method\":\"%m\",\"r_status\":\"%reqAttribute{STATUS}\",\"r_status_external_code\":\"%reqAttribute{STATUS_EXTERNAL_CODE}\",\"r_status_internal_code\":\"%reqAttribute{STATUS_INTERNAL_CODE}\",\"q_host\":\"%h\",\"q_path\":\"%r\",\"q_request_id\":\"%responseHeader{X-Request-Id}\",\"q_accept\":\"%header{Accept}\",\"r_access_control_allow_origin\":\"%responseHeader{ACCESS_CONTROL_ALLOW_ORIGIN}\",\"q_accept_encoding\":\"%header{Accept-Encoding}\",\"q_accept_language\":\"%header{Accept-Language}\",\"q_connection\":\"%header{Connection}\",\"r_cache_control\":\"%responseHeader{Cache_Control}\"}"
+logging:
+  level: DEBUG
+  appenders:
+    - type: file
+      currentLogFilename: /var/tmp/monit/log/monit.log
+      archive: false
+    - type: console
+swagger:
+  resourcePackage: com.orange.pns.monit.api
+  title: "Monit service API"
+  version: 0.1.0
+  basePath: /monit/v1
