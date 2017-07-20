@@ -42,6 +42,7 @@ public class MonitApplication extends Application<MonitConfiguration>
     @Override
     public void run(MonitConfiguration configuration,Environment environment) 
     {
+	//TEST COMMENT
     	try {
     	CapacityResource resource;
 		
